@@ -69,7 +69,6 @@ namespace WebAPICore1.Helpers
                     }
                 }
             }
-
             return sendMessageResponse;
         }
 

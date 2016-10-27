@@ -198,7 +198,7 @@ namespace WebAPICore1.Controllers
 
             // Get the token.
             var authResult = await authContext.AcquireTokenByAuthorizationCodeAsync(
-                HttpContext.Request.Query["code"],                                         // the auth 'code' parameter from the Azure redirect.
+                HttpContext.Request.Query["code"],                              // the auth 'code' parameter from the Azure redirect.
                 loginRedirectUri,                                               // same redirectUri as used before in Login method.
                 new ClientCredential(Settings.ClientId, Settings.ClientSecret), // use the client ID and secret to establish app identity.
                 Settings.GraphAPIResource);
@@ -206,13 +206,7 @@ namespace WebAPICore1.Controllers
 
             // Get user's info for the logged in user.
             var currUserInfo = await ApiHelper.GetUserInfoAsync(authResult.AccessToken);
-
-            // Save the user info in the session.
-            //string email = currUserInfo.Address;
-            //HttpContext.Session.SetString(email + "_" + SessionKeys.Login.UserInfo.Name , currUserInfo.Name);
-            //HttpContext.Session.SetString(email + "_Address" , currUserInfo.Address);
-            //HttpContext.Session.SetString(email + "_AccessToken", authResult.AccessToken);
-
+          
             // set access token in the user info object.
             currUserInfo.AccessToken = authResult.AccessToken;
 
